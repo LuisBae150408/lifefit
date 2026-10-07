@@ -1,0 +1,5 @@
+# El panel de administración no debe indexarse ni cachearse.
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+    Header set Cache-Control "no-store, no-cache, must-revalidate"
+</IfModule>

@@ -1,0 +1,153 @@
+/* =================================================================
+   PANEL DE ADMINISTRACION -- estilo funcional propio, no el de las
+   landings publicas. Reusa la tipografia y el acento de marca.
+================================================================= */
+:root{
+  --ad-accent:#c17f45;
+  --ad-accent-2:#8a9a6e;
+  --ad-ink:#1c1712;
+  --ad-ink-soft:#6b6255;
+  --ad-bg:#f6f3ee;
+  --ad-surface:#ffffff;
+  --ad-border:#e4ddd0;
+  --ad-danger:#b3452f;
+  --ad-radius:14px;
+  --ad-shadow:0 12px 30px -16px rgba(28,23,18,.25);
+  --ad-font-display:'Space Grotesk', sans-serif;
+  --ad-font-body:'Manrope', sans-serif;
+}
+*{box-sizing:border-box;}
+body.admin{
+  margin:0; background:var(--ad-bg); color:var(--ad-ink);
+  font-family:var(--ad-font-body); -webkit-font-smoothing:antialiased;
+}
+.admin a{color:inherit; text-decoration:none;}
+h1,h2,h3{font-family:var(--ad-font-display); margin:0;}
+.admin-shell{min-height:100vh; display:flex; flex-direction:column;}
+
+.admin-top{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:14px 24px; background:var(--ad-ink); color:#fff;
+}
+.admin-top__brand{display:flex; align-items:center; gap:8px; font-weight:700; font-size:1.05rem;}
+.admin-top__brand .admin-top__logo{height:22px; width:auto; color:var(--ad-accent);}
+.admin-top__user{font-size:.82rem; color:#cfc4ac; display:flex; align-items:center; gap:14px;}
+.admin-top__user a{font-weight:700; color:#fff; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,.12);}
+.admin-top__user a:hover{background:rgba(255,255,255,.22);}
+
+.admin-nav{display:flex; flex-wrap:wrap; gap:6px; padding:14px 24px; background:var(--ad-surface); border-bottom:1px solid var(--ad-border);}
+.admin-nav a{
+  padding:9px 16px; border-radius:999px; font-size:.84rem; font-weight:700;
+  color:var(--ad-ink-soft); border:1px solid transparent;
+}
+.admin-nav a:hover{border-color:var(--ad-border);}
+.admin-nav a.is-active{background:var(--ad-ink); color:#fff;}
+
+.admin-main{flex:1; padding:28px 24px 60px; max-width:1100px; width:100%; margin:0 auto;}
+.admin-head{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px; flex-wrap:wrap;}
+.admin-head h1{font-size:1.5rem;}
+.admin-head p{color:var(--ad-ink-soft); margin-top:4px; font-size:.9rem;}
+
+.admin-card{background:var(--ad-surface); border:1px solid var(--ad-border); border-radius:var(--ad-radius); padding:22px; margin-bottom:20px;}
+.admin-card h2{font-size:1.05rem; margin-bottom:14px;}
+
+.admin-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+.admin-stat{background:var(--ad-surface); border:1px solid var(--ad-border); border-radius:var(--ad-radius); padding:20px;}
+.admin-stat .n{font-family:var(--ad-font-display); font-size:2rem;}
+.admin-stat .l{color:var(--ad-ink-soft); font-size:.82rem;}
+
+table.admin-table{width:100%; border-collapse:collapse; font-size:.88rem;}
+.admin-table th{text-align:left; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--ad-ink-soft); padding:8px 10px; border-bottom:1px solid var(--ad-border);}
+.admin-table td{padding:10px; border-bottom:1px solid var(--ad-border); vertical-align:middle;}
+.admin-table tr:last-child td{border-bottom:0;}
+.admin-table img{width:44px; height:44px; object-fit:cover; border-radius:8px;}
+
+.admin-form label{display:block; font-size:.8rem; font-weight:700; margin:14px 0 6px;}
+.admin-form label:first-child{margin-top:0;}
+.admin-form input[type=text],
+.admin-form input[type=number],
+.admin-form input[type=password],
+.admin-form input[type=url],
+.admin-form select,
+.admin-form textarea{
+  width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--ad-border);
+  font:inherit; font-size:.92rem; background:#fff; color:var(--ad-ink);
+}
+.admin-form textarea{resize:vertical; min-height:70px;}
+.admin-form .row{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px;}
+.admin-form .check{display:flex; align-items:center; gap:10px; margin-top:14px;}
+.admin-form .check label{margin:0; font-weight:600; cursor:pointer;}
+
+/* Checkbox "cute": pastilla redondeada con check animado, en vez del nativo del navegador. */
+.admin-form .check input[type=checkbox]{
+  appearance:none; -webkit-appearance:none;
+  width:22px; height:22px; flex:none; margin:0;
+  border:2px solid var(--ad-border); border-radius:7px; background:#fff;
+  cursor:pointer; display:grid; place-content:center;
+  transition:background .18s ease, border-color .18s ease, transform .12s ease;
+}
+.admin-form .check input[type=checkbox]::after{
+  content:''; width:12px; height:12px; background:#fff;
+  clip-path:polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform:scale(0); transition:transform .16s cubic-bezier(.34,1.56,.64,1);
+}
+.admin-form .check input[type=checkbox]:checked{background:var(--ad-accent); border-color:var(--ad-accent);}
+.admin-form .check input[type=checkbox]:checked::after{transform:scale(1);}
+.admin-form .check input[type=checkbox]:hover{border-color:var(--ad-accent);}
+.admin-form .check input[type=checkbox]:active{transform:scale(.9);}
+.admin-form .check input[type=checkbox]:focus-visible{outline:2px solid var(--ad-accent); outline-offset:2px;}
+.admin-hint{font-size:.76rem; color:var(--ad-ink-soft); margin-top:4px;}
+
+.admin-btn{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  padding:10px 20px; border-radius:999px; border:0; font-weight:700; font-size:.86rem;
+  background:var(--ad-ink); color:#fff; font-family:inherit;
+}
+.admin-btn:hover{opacity:.9;}
+.admin-btn--accent{background:var(--ad-accent);}
+.admin-btn--danger{background:var(--ad-danger);}
+.admin-btn--ghost{background:transparent; border:1px solid var(--ad-border); color:var(--ad-ink);}
+.admin-actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:18px;}
+
+.admin-alert{padding:12px 16px; border-radius:10px; font-size:.86rem; margin-bottom:18px;}
+.admin-alert--ok{background:#e9f0e2; color:#3f5c2a;}
+.admin-alert--error{background:#fbe7e2; color:var(--ad-danger);}
+
+.admin-badge{display:inline-flex; align-items:center; gap:4px; padding:3px 9px; border-radius:999px; font-size:.7rem; font-weight:700; text-transform:uppercase;}
+.admin-badge--on{background:#e9f0e2; color:#3f5c2a;}
+.admin-badge--off{background:#eee; color:var(--ad-ink-soft);}
+
+.admin-login{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;}
+.admin-login__card{width:100%; max-width:360px; background:var(--ad-surface); border:1px solid var(--ad-border); border-radius:18px; padding:32px; box-shadow:var(--ad-shadow);}
+.admin-login__brand{display:flex; align-items:center; gap:8px; font-weight:700; font-size:1.15rem; margin-bottom:22px; justify-content:center;}
+.admin-login__brand .admin-login__logo{height:26px; width:auto; color:var(--ad-accent);}
+
+.admin-empty{color:var(--ad-ink-soft); font-size:.9rem; padding:20px 0; text-align:center;}
+
+/* EDICIÓN INLINE -- panel que se abre justo debajo de lo que se está editando. */
+tr.is-editing > td{background:#f2ede2;}
+.admin-edit-row > td{padding:0; white-space:normal;}
+.admin-edit-panel{
+  padding:20px 22px 22px; background:#faf7f0; border-top:3px solid var(--ad-accent-2);
+  white-space:normal; animation:admin-edit-in .16s ease-out;
+  max-width:100vw; box-sizing:border-box;
+}
+.admin-edit-panel h3{font-family:var(--ad-font-display); font-size:.95rem; margin-bottom:14px;}
+/* Cuando el ancla no es una fila de tabla (ej. header de un grupo), el panel se ve como una tarjeta propia. */
+div.admin-edit-panel{
+  border:1px solid var(--ad-border); border-top:3px solid var(--ad-accent-2);
+  border-radius:var(--ad-radius); margin-top:14px;
+}
+@keyframes admin-edit-in{
+  from{opacity:0; transform:translateY(-6px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@media (max-width:640px){
+  .admin-table{display:block; overflow-x:auto; white-space:nowrap;}
+  .admin-top{flex-wrap:wrap; padding:12px 16px; gap:10px;}
+  .admin-top__brand{font-size:.95rem;}
+  .admin-top__user{font-size:.78rem; gap:10px;}
+  .admin-nav{padding:10px 16px; gap:8px;}
+  .admin-main{padding:20px 16px 40px;}
+}

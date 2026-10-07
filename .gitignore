@@ -1,0 +1,20 @@
+# Secretos: NUNCA al repositorio
+.env
+.env.*
+!.env.example
+
+# Logs del servidor
+error_log
+*.log
+
+# Archivos que genera el hosting (Namecheap), no son tu código
+nc_assets/
+parking-page.shtml
+.well-known/
+
+# Fotos subidas desde el panel (contenido del negocio, no código)
+uploads/*
+!uploads/.gitkeep
+
+.DS_Store
+Thumbs.db
